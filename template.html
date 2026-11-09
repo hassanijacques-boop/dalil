@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dalîl — le Coran et la Sunna, par petites cartes</title>
+<meta name="description" content="Cartes de preuves : Coran et Sunna uniquement. Tawhîd, Kitâb at-Tawhîd, Oussoul ath-Thalâtha, sîra, prophètes, fiqh, 'aqîda, rappels.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F3E8; --bg2:#EFE8D6; --card:#FFFDF8; --line:#DCD3BE; --line2:#C9BEA4;
+  --txt:#152A22; --mut:#6C7A70; --gold:#0E7C5A; --gold2:#12A574; --green:#0E7C5A; --red:#B4462F;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,sans-serif;line-height:1.55;
+  background-image:radial-gradient(circle at 18% 0%, rgba(14,124,90,.09), transparent 42%),
+                   radial-gradient(circle at 88% 12%, rgba(138,106,47,.07), transparent 38%),
+                   radial-gradient(#00000007 1px, transparent 1px);
+  background-size:auto,auto,20px 20px;background-attachment:fixed;min-height:100vh}
+a{color:var(--gold2);text-decoration:none}
+button{font-family:inherit}
+
+/* ---------- TOP ---------- */
+.top{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:14px;padding:11px 20px;
+  background:rgba(247,243,232,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mk{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-family:'Amiri',serif;
+  font-size:19px;color:#fff;background:linear-gradient(150deg,var(--gold2),var(--gold));box-shadow:0 0 0 1px rgba(14,124,90,.45),0 6px 18px rgba(14,124,90,.2)}
+.brand h1{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;margin:0;letter-spacing:-.02em;font-weight:800}
+.brand small{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.spacer{flex:1}
+.hud{display:flex;align-items:center;gap:10px}
+.hud .pill{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--mut);
+  border:1px solid var(--line);border-radius:999px;padding:5px 11px;background:#FFFDF8}
+.hud .pill b{color:var(--gold2);font-family:'Bricolage Grotesque',sans-serif;font-size:13px}
+.ring{width:34px;height:34px;flex:0 0 auto}
+.ring circle{fill:none;stroke-width:3.5}
+.ring .bgc{stroke:var(--line2)}
+.ring .fg{stroke:var(--gold);stroke-linecap:round;transition:stroke-dashoffset .4s;transform:rotate(-90deg);transform-origin:50% 50%}
+
+/* ---------- LAYOUT ---------- */
+main{max-width:1080px;margin:0 auto;padding:26px 20px 70px}
+.view{display:none}
+.view.on{display:block}
+
+/* ---------- HOME ---------- */
+.hero{padding:14px 0 26px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#fff;background:linear-gradient(150deg,var(--gold2),var(--gold));padding:6px 12px;border-radius:999px}
+.hero h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(30px,5vw,46px);line-height:1.02;letter-spacing:-.04em;margin:16px 0 0;font-weight:800}
+.hero h2 em{font-style:normal;color:var(--gold2)}
+.hero p{color:var(--mut);max-width:60ch;margin:14px 0 0;font-size:15.5px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{border:none;border-radius:12px;padding:13px 22px;font-weight:700;font-size:14.5px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+  transition:transform .12s,box-shadow .12s}
+.btn.gold{background:linear-gradient(150deg,var(--gold2),var(--gold));color:#fff;box-shadow:0 8px 24px rgba(14,124,90,.22)}
+.btn.gold:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(14,124,90,.3)}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line2)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold2)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.btn small{font-weight:600;opacity:.75;font-size:12px}
+
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:34px 0 14px}
+.sec-title h3{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;margin:0;letter-spacing:-.02em}
+.sec-title span{font-size:12.5px;color:var(--mut)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
+.stk{position:relative;background:linear-gradient(160deg,#FFFDF8,#FAF5E8);border:1px solid var(--line);
+  border-radius:16px;padding:17px 17px 15px;cursor:pointer;overflow:hidden;transition:transform .14s,border-color .14s,box-shadow .14s}
+.stk:hover{transform:translateY(-3px);border-color:var(--sc);box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.stk::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--sc);opacity:.9}
+.stk .ar{font-family:'Amiri',serif;color:var(--sc);font-size:17px;opacity:.9;direction:rtl;line-height:1.2;padding-right:44px}
+.stk h4{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;margin:6px 0 0;letter-spacing:-.02em;font-weight:700;padding-right:34px}
+.stk p{font-size:12.5px;color:var(--mut);margin:7px 0 0;line-height:1.45;min-height:36px}
+.stk .ico{position:absolute;right:14px;top:14px;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:14px;
+  background:#E4F0E8;border:1px solid #B7D3C3;color:var(--gold);font-weight:700}
+.stk .bar{margin-top:12px;height:5px;border-radius:99px;background:#E9E2D0;overflow:hidden}
+.stk .bar i{display:block;height:100%;width:0;background:var(--sc);border-radius:99px;transition:width .4s}
+.stk .foot{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);margin-top:7px;font-weight:600}
+.stk .foot b{color:var(--txt);font-weight:700}
+
+/* ---------- SESSION ---------- */
+.sessionbar{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.sessionbar .back{border:1px solid var(--line);background:transparent;color:var(--mut);border-radius:10px;padding:8px 13px;cursor:pointer;font-size:13px;font-weight:600}
+.sessionbar .back:hover{color:var(--gold2);border-color:var(--gold)}
+.sessionbar .pos{font-size:12.5px;color:var(--mut);font-weight:600}
+.dots{display:flex;gap:5px;margin-left:auto}
+.dots i{width:8px;height:8px;border-radius:99px;background:var(--line2)}
+.dots i.ok{background:var(--green)}
+.dots i.ko{background:var(--red)}
+.dots i.cur{background:var(--gold);transform:scale(1.25)}
+
+.flash{position:relative;background:linear-gradient(170deg,#FFFDF8,#FBF7EC);border:1px solid var(--line2);border-radius:20px;
+  padding:30px 30px 26px;min-height:330px;display:flex;flex-direction:column;box-shadow:0 18px 44px rgba(21,42,34,.13);
+  overflow:hidden}
+.flash::after{content:"";position:absolute;inset:0;background-image:
+  repeating-linear-gradient(45deg, rgba(14,124,90,.05) 0 2px, transparent 2px 14px);pointer-events:none;opacity:.55}
+.flash .tag{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tc,var(--sc));border:1px solid var(--tc,var(--sc));border-radius:999px;padding:4px 10px;align-self:flex-start}
+.flash .ttl{font-size:12.5px;color:var(--mut);margin:14px 0 0;font-weight:600;letter-spacing:.02em}
+.pb{font-family:'Amiri',serif;font-size:.92em;line-height:0;vertical-align:-.25em;margin:0 .12em;display:inline-block}
+.flash .q{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(20px,3.2vw,27px);line-height:1.28;letter-spacing:-.025em;margin:8px 0 0;font-weight:600;position:relative;z-index:1}
+.flash .reveal{margin-top:auto;padding-top:22px;position:relative;z-index:1}
+.ans{border-top:1px solid var(--line2);margin-top:20px;padding-top:18px;position:relative;z-index:1;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ans .txt{font-size:15.5px;line-height:1.62}
+.srcblock{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:11px 13px;border-radius:11px;
+  background:rgba(14,124,90,.06);border:1px solid rgba(14,124,90,.28)}
+.srcblock .ic{font-size:15px;line-height:1.3;font-weight:700;color:var(--gold)}
+.srcblock .lab{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;display:block}
+.srcblock .val{font-size:13px;color:#1B4A3A;font-weight:600}
+.actblock{display:flex;gap:10px;align-items:flex-start;margin-top:10px;padding:11px 13px;border-radius:11px;
+  background:rgba(138,106,47,.07);border:1px solid rgba(138,106,47,.28)}
+.actblock .lab{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A6A2F;font-weight:700;display:block}
+.actblock .val{font-size:13px;color:#4A3A18}
+.grade{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.grade button{flex:1;min-width:150px;border-radius:13px;padding:14px;font-weight:700;font-size:14px;cursor:pointer;border:1px solid;transition:.13s}
+.grade .no{background:rgba(180,70,47,.07);border-color:rgba(180,70,47,.35);color:#B4462F}
+.grade .no:hover{background:rgba(180,70,47,.14)}
+.grade .yes{background:rgba(14,124,90,.08);border-color:rgba(14,124,90,.4);color:#0E7C5A}
+.grade .yes:hover{background:rgba(14,124,90,.16)}
+.hint{text-align:center;font-size:11.5px;color:#8A968C;margin-top:12px}
+.hint kbd{background:#EFE8D6;border:1px solid var(--line2);border-radius:4px;padding:1px 5px;font-size:10.5px;font-family:inherit}
+
+/* ---------- FIN DE SESSION ---------- */
+.done{text-align:center;padding:40px 20px}
+.done .big{font-family:'Bricolage Grotesque',sans-serif;font-size:64px;line-height:1;color:var(--gold2);letter-spacing:-.04em}
+.done h3{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;margin:10px 0 0;letter-spacing:-.02em}
+.done p{color:var(--mut);margin:8px 0 22px;font-size:14.5px}
+
+/* ---------- STACK VIEW ---------- */
+.shead{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.shead .ar{font-family:'Amiri',serif;font-size:26px;color:var(--sc);direction:rtl}
+.shead h2{font-family:'Bricolage Grotesque',sans-serif;font-size:26px;margin:0;letter-spacing:-.03em}
+.shead .sub{font-size:12.5px;color:var(--mut);margin:2px 0 0;max-width:62ch}
+.list{display:flex;flex-direction:column;gap:9px}
+.row{display:flex;align-items:center;gap:13px;background:#FFFDF8;border:1px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;transition:.13s}
+.row:hover{border-color:var(--sc);background:#FFFDF8;box-shadow:0 6px 18px rgba(21,42,34,.08)}
+.row .dot{width:9px;height:9px;border-radius:99px;flex:0 0 auto;background:var(--line2)}
+.row .dot.new{background:var(--gold)}
+.row .dot.ok{background:var(--green)}
+.row .dot.ko{background:var(--red)}
+.row .t{font-weight:600;font-size:14px;flex:1}
+.row .s{font-size:11px;color:var(--mut);white-space:nowrap}
+
+/* ---------- FOOTER / MÉTHODE ---------- */
+.panel{margin-top:44px;border:1px solid var(--line);border-radius:18px;background:#FFFDF8;overflow:hidden;box-shadow:0 10px 30px rgba(21,42,34,.06)}
+.panel>header{padding:20px 24px 16px;border-bottom:1px solid var(--line)}
+.panel h3{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;margin:0 0 4px;letter-spacing:-.02em}
+.panel header p{margin:0;color:var(--mut);font-size:13.5px;max-width:76ch}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;padding:20px 24px 24px}
+.step{border-left:2px solid var(--gold);padding-left:13px}
+.step b{display:block;font-size:13.5px}
+.step span{font-size:12.5px;color:var(--mut)}
+.srclist{padding:18px 24px 24px;font-size:13px;color:var(--mut)}
+.srclist b{color:var(--txt)}
+footer{border-top:1px solid var(--line);padding:24px 20px 50px;color:#7C8A80;font-size:12px;text-align:center}
+
+@media(max-width:640px){
+  .flash{padding:22px 18px 20px;min-height:0}
+  .grid{grid-template-columns:1fr}
+  .hud .pill:first-child{display:none}
+  .brand small{display:none}
+  .grade button{min-width:0}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">
+    <div class="mk">د</div>
+    <div><h1>Dalîl<small>Coran &amp; Sunna</small></h1></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="hud">
+    <div class="pill">Aujourd'hui <b id="hudToday">0</b>/5</div>
+    <div class="pill">Cartes vues <b id="hudKnown">0</b>/<span id="hudTotal">0</span></div>
+    <svg class="ring" viewBox="0 0 40 40"><circle class="bgc" cx="20" cy="20" r="16"></circle><circle class="fg" id="ringFg" cx="20" cy="20" r="16" stroke-dasharray="100.5" stroke-dashoffset="100.5"></circle></svg>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ ACCUEIL ============ -->
+<section class="view on" id="v-home">
+  <div class="hero">
+    <div class="kicker">Le Coran. La Sunna. Rien d'autre.</div>
+    <h2>Chaque carte est <em>une preuve.</em></h2>
+    <p>Cinq cartes par jour, cinq minutes. Pas de commentaire personnel, pas de prédicateur contemporain : <strong>le texte, sa référence, ce qu'il établit</strong>, et une action à faire. Si une carte ne peut pas être adossée à un verset ou à un hadith, elle n'existe pas.</p>
+    <div class="cta">
+      <button class="btn gold" id="startBtn">▶ Ma session du jour <small id="dueCount"></small></button>
+      <button class="btn ghost" id="allBtn">Parcourir les douze thèmes</button>
+    </div>
+  </div>
+
+  <div class="sec-title"><h3>Les douze thèmes</h3><span id="stackCount"></span></div>
+  <div class="grid" id="grid"></div>
+
+  <section class="panel">
+    <header>
+      <h3>La méthode — et ce que ce site n'utilise pas</h3>
+      <p>On ne retient pas un livre : on retient des unités courtes, revues au bon moment. Mais la règle qui commande tout ici est celle des sources — <strong>aucune carte sans preuve, aucun avis personnel.</strong></p>
+    </header>
+    <div class="steps">
+      <div class="step"><b>1. Une carte à la fois</b><span>Une idée, une preuve. Le cerveau enregistre ce qui est court et clos.</span></div>
+      <div class="step"><b>2. On répond avant de voir</b><span>Formuler sa réponse, même mentalement, double la rétention.</span></div>
+      <div class="step"><b>3. On revoit à J+1, J+3, J+7</b><span>C'est l'espacement qui fixe, pas la relecture.</span></div>
+      <div class="step"><b>4. On agit une fois</b><span>Un savoir non pratiqué s'efface — et la science utile est celle qui se vit.</span></div>
+      <div class="step"><b>5. On revient demain</b><span>« Les actes les plus aimés d'Allah sont les plus constants, même s'ils sont peu. »</span></div>
+    </div>
+    <div class="srclist">
+      <b>Sources utilisées :</b> Le Coran (sourate:verset) · <i>Sahîh al-Bukhârî</i> · <i>Sahîh Muslim</i> · <i>Sunan</i> Abî Dâwûd · <i>Jâmi'</i> at-Tirmidhî · <i>Sunan</i> Ibn Mâja · <i>Musnad</i> Ahmad · <i>Al-Muwatta'</i> · <i>Al-Arba'în an-Nawawiyya</i> · <i>Al-Usûl ath-Thalâtha</i> · <i>Kitâb at-Tawhîd</i> · <i>Al-'Aqîda al-Wâsitiyya</i> · <i>Zâd al-Ma'âd</i> · <i>Madârij as-Sâlikîn</i> · <i>Tafsîr</i> Ibn Kathîr · <i>Ar-Rahîq al-Makhtûm</i> · <i>Subul al-Hudâ wa ar-Rashâd</i>.
+      <br><br><b>Ce que ce site n'utilise pas — par choix :</b> aucun prédicateur contemporain, ni francophone ni arabophone · aucun avis personnel présenté comme religion · aucun hadith faible ou « on dit que » · aucun récit non sourcé · pas de polémique, pas d'actualité.
+      <br><br>⚠️ <b>Le texte arabe n'est pas reproduit ici</b> — pour éviter toute erreur de copie ou de vocalisation. Ouvrez le Coran lui-même : la carte renvoie à la référence exacte.
+      <br><br>⚠️ <b>Un hadith n'est cité qu'avec son recueil.</b> Quand le numéro n'est pas certain, seul le recueil est indiqué — jamais un numéro inventé. Une application ne remplace ni les ouvrages, ni l'enseignement d'un professeur.
+    </div>
+  </section>
+</section>
+
+<!-- ============ SESSION ============ -->
+<section class="view" id="v-session">
+  <div class="sessionbar">
+    <button class="back" id="quitBtn">← Quitter</button>
+    <div class="pos" id="posTxt"></div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div id="cardZone"></div>
+  <div class="hint"><kbd>espace</kbd> retourner · <kbd>1</kbd> à revoir · <kbd>2</kbd> je sais</div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section class="view" id="v-stack">
+  <div class="sessionbar"><button class="back" id="backBtn">← Tous les thèmes</button></div>
+  <div class="shead" id="shead"></div>
+  <div class="list" id="list"></div>
+</section>
+
+</main>
+
+<footer>
+  Dalîl — cartes de preuves, Coran et Sunna.<br>
+  Aucune donnée ne quitte cet appareil · Progression enregistrée dans le navigateur.<br>
+  <a href="https://hassanijacques-boop.github.io/tube/">← Les Tube</a> · Version 1 — 8 novembre 2026
+</footer>
+
+<script>
+const STACKS = __STACKS__;
+const CARDS  = __CARDS__;
+const DAY = 86400000;
+const $ = s => document.querySelector(s);
+const tw = t => t.replace(/\uFDFA/g, '<span class="pb">\uFDFA</span>');
+
+/* ---------- état persistant ---------- */
+const KEY = "dalil_v1";
+let db = JSON.parse(localStorage.getItem(KEY) || '{"st":{},"jour":{},"total":0}');
+if(!db.st) db.st = {};
+if(!db.jour) db.jour = {};
+const save = () => localStorage.setItem(KEY, JSON.stringify(db));
+const today = () => new Date().toISOString().slice(0,10);
+const now = () => Date.now();
+
+function statut(id){ return db.st[id] || null; }
+function isKnown(id){ const s = db.st[id]; return !!s && s.b >= 2; }
+function isDue(id){
+  const s = db.st[id];
+  if(!s) return true;
+  return (s.next || 0) <= now();
+}
+function dueCards(){ return CARDS.filter(c => isDue(c.id)); }
+function newCount(){ return CARDS.filter(c => !db.st[c.id]).length; }
+function seenCount(){ return CARDS.filter(c => !!db.st[c.id]).length; }
+function knownCount(){ return seenCount(); }
+
+/* ---------- rendu accueil ---------- */
+function ringUpdate(){
+  const p = Math.round(100 * knownCount() / CARDS.length);
+  const C = 2 * Math.PI * 16;
+  $("#ringFg").setAttribute("stroke-dasharray", C.toFixed(1));
+  $("#ringFg").setAttribute("stroke-dashoffset", (C * (1 - p/100)).toFixed(1));
+}
+function renderHome(){
+  $("#hudTotal").textContent = CARDS.length;
+  $("#hudKnown").textContent = knownCount();
+  $("#hudToday").textContent = db.jour[today()] || 0;
+  ringUpdate();
+  const due = dueCards().length;
+  $("#dueCount").textContent = due ? "· "+due+" à revoir" : "· tout est à jour";
+  $("#stackCount").textContent = STACKS.length + " thèmes · " + CARDS.length + " cartes";
+  const g = $("#grid"); g.innerHTML = "";
+  STACKS.forEach(s => {
+    const cs = CARDS.filter(c => c.s === s.id);
+    const kn = cs.filter(c => isKnown(c.id)).length;
+    const pct = cs.length ? Math.round(100*kn/cs.length) : 0;
+    const el = document.createElement("div");
+    el.className = "stk"; el.style.setProperty("--sc", s.c);
+    el.innerHTML =
+      '<div class="ico">'+s.e+'</div>'+
+      (s.ar ? '<div class="ar">'+s.ar+'</div>' : '')+
+      '<h4>'+s.n+'</h4>'+
+      '<p>'+s.d+'</p>'+
+      '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="foot"><span><b>'+cs.length+'</b> cartes</span><span>'+kn+' sues</span></div>';
+    el.onclick = () => openStack(s.id);
+    g.appendChild(el);
+  });
+}
+
+/* ---------- session ---------- */
+let session = {file:[], i:0, res:[], revealed:false};
+
+function buildSession(){
+  const due = dueCards().sort((a,b) => (db.st[a.id]?.next||0) - (db.st[b.id]?.next||0));
+  const news = CARDS.filter(c => !db.st[c.id]);
+  let file = due.slice(0,5);
+  if(file.length < 5) file = file.concat(news.slice(0, 5-file.length));
+  if(file.length === 0) file = CARDS.slice().sort(()=>Math.random()-.5).slice(0,5);
+  return file;
+}
+function startSession(){
+  if((db.jour[today()]||0) >= 5 && dueCards().length === 0){
+    session.file = CARDS.filter(c=>!isKnown(c.id)).slice(0,5);
+    if(!session.file.length) session.file = CARDS.slice().sort(()=>Math.random()-.5).slice(0,5);
+  } else {
+    session.file = buildSession();
+  }
+  session.i = 0; session.res = []; session.revealed = false;
+  show("v-session"); renderCard();
+}
+function renderDots(){
+  const d = $("#dots"); d.innerHTML = "";
+  session.file.forEach((c,i) => {
+    const el = document.createElement("i");
+    if(i < session.res.length) el.className = session.res[i] ? "ok" : "ko";
+    else if(i === session.i) el.className = "cur";
+    d.appendChild(el);
+  });
+}
+function renderCard(){
+  const zone = $("#cardZone");
+  if(session.i >= session.file.length) return renderDone();
+  const c = session.file[session.i];
+  const s = STACKS.find(x => x.id === c.s);
+  $("#posTxt").textContent = "Carte " + (session.i+1) + " / " + session.file.length;
+  renderDots();
+  zone.innerHTML =
+    '<div class="flash" style="--sc:'+s.c+'">'+
+      '<span class="tag" style="--tc:'+(c.ty==="Coran"?"#0E7C5A":"#8A6A2F")+'">'+c.ty+' · '+s.n+'</span>'+
+      
+      '<div class="q">'+tw(c.q)+'</div>'+
+      '<div class="reveal" id="revZone">'+
+        '<button class="btn gold" id="revealBtn" style="width:100%;justify-content:center">Voir la réponse</button>'+
+      '</div>'+
+    '</div>';
+  $("#revealBtn").onclick = reveal;
+}
+function reveal(){
+  const c = session.file[session.i];
+  const s = STACKS.find(x => x.id === c.s);
+  $("#revZone").innerHTML =
+    '<div class="ans">'+
+      '<div class="txt">'+tw(c.a)+'</div>'+
+      '<div class="srcblock"><div class="ic">§</div><div><span class="lab">Preuve</span><span class="val">'+c.src+'</span></div></div>'+
+      (c.act ? '<div class="actblock"><div class="ic">→</div><div><span class="lab">À faire</span><span class="val">'+c.act+'</span></div></div>' : '')+
+    '</div>'+
+    '<div class="grade">'+
+      '<button class="no" id="gNo">À revoir</button>'+
+      '<button class="yes" id="gYes">Je sais</button>'+
+    '</div>';
+  $("#gNo").onclick = () => grade(false);
+  $("#gYes").onclick = () => grade(true);
+}
+function grade(ok){
+  const c = session.file[session.i];
+  const prev = db.st[c.id] || {b:0, next:0};
+  let b = ok ? Math.min(3, (prev.b||0)+1) : 1;
+  const delays = [0, 1, 3, 7];
+  db.st[c.id] = {b, next: now() + delays[b]*DAY, last: now()};
+  db.total = (db.total||0)+1;
+  const t = today(); db.jour[t] = (db.jour[t]||0)+1;
+  save();
+  session.res.push(ok);
+  session.i++;
+  if(session.i >= session.file.length) renderDone(); else renderCard();
+  $("#hudToday").textContent = db.jour[today()] || 0;
+  $("#hudKnown").textContent = knownCount();
+  ringUpdate();
+}
+function renderDone(){
+  const ok = session.res.filter(Boolean).length;
+  const ko = session.res.length - ok;
+  $("#posTxt").textContent = "Session terminée";
+  renderDots();
+  $("#cardZone").innerHTML =
+    '<div class="flash" style="--sc:var(--gold)"><div class="done">'+
+      '<div class="big">'+ok+'/'+session.res.length+'</div>'+
+      '<h3>Session terminée</h3>'+
+      '<p>'+ok+' carte'+(ok>1?'s':'')+' sue'+(ok>1?'s':'')+' · '+ko+' à revoir demain.'+
+      '<br>Reviens demain : c\'est la répétition espacée qui fait tenir le savoir.</p>'+
+      '<button class="btn gold" id="againBtn" style="margin:0 auto">Retour aux thèmes</button>'+
+    '</div></div>';
+  $("#againBtn").onclick = () => { show("v-home"); renderHome(); };
+}
+
+/* ---------- stack ---------- */
+function openStack(id){
+  const s = STACKS.find(x => x.id === id);
+  const cs = CARDS.filter(c => c.s === id);
+  $("#shead").innerHTML = '<div><div class="ar">'+s.ar+'</div></div><div style="flex:1"><h2>'+s.n+'</h2><p class="sub">'+s.d+'</p></div>';
+  const l = $("#list"); l.innerHTML = "";
+  cs.forEach(c => {
+    const st = db.st[c.id];
+    const cls = !st ? "new" : (st.b >= 2 ? "ok" : "ko");
+    const lab = !st ? "nouvelle" : (st.b >= 2 ? "sue · J+"+Math.max(0,Math.ceil((st.next-now())/DAY)) : "à revoir");
+    const row = document.createElement("div");
+    row.className = "row";
+    row.innerHTML = '<span class="dot '+cls+'"></span><span class="t">'+c.t+'</span><span class="s">'+lab+'</span>';
+    row.onclick = () => {
+      session.file = [c]; session.i = 0; session.res = [];
+      show("v-session"); renderCard();
+    };
+    l.appendChild(row);
+  });
+  show("v-stack");
+}
+
+/* ---------- navigation ---------- */
+function show(id){
+  document.querySelectorAll(".view").forEach(v => v.classList.toggle("on", v.id === id));
+  window.scrollTo({top:0,behavior:"instant"});
+}
+$("#startBtn").onclick = startSession;
+$("#allBtn").onclick = () => { document.querySelector(".sec-title").scrollIntoView({behavior:"smooth"}); };
+$("#quitBtn").onclick = () => { show("v-home"); renderHome(); };
+$("#backBtn").onclick = () => { show("v-home"); renderHome(); };
+
+document.addEventListener("keydown", e => {
+  if(!$("#v-session").classList.contains("on")) return;
+  if(e.key === " " || e.key === "Enter"){ e.preventDefault(); if($("#revealBtn")) reveal(); }
+  if(e.key === "1" && $("#gNo")) grade(false);
+  if(e.key === "2" && $("#gYes")) grade(true);
+});
+
+/* ---------- init ---------- */
+renderHome();
+</script>
+</body>
+</html>
